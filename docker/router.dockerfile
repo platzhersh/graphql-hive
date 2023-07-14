@@ -15,6 +15,10 @@ WORKDIR /usr/src
 # Create blank project
 RUN USER=root cargo new router
 
+# debug log path
+RUN echo "PWD $(pwd)"
+RUN echo "LS $(ls)"
+
 # Copy Cargo files
 COPY --from=pkg ./Cargo.toml /usr/src/router/
 COPY --from=config ./Cargo.lock /usr/src/router/
