@@ -16,6 +16,7 @@ build-for-publish:
     DOCKER_TAG: :ipv-fix
     DOCKER_REGISTRY: registry.cistec.com
   script:
+    # migrate all this into a dockerfile
     - export COMMIT_SHA="ipv-fix"
     - export RELEASE="ipv-fix"
     - export BRANCH_NAME="ipv-fix"
@@ -23,10 +24,10 @@ build-for-publish:
     - export DOCKER_TAG=":ipv-fix"
     - export DOCKER_REGISTRY="registry.cistec.com/"
     - apt-get update
-    - apt-get install -y rustc
+    - apt-get install -yq rustc
     # install docker (see: https://docs.docker.com/engine/install/ubuntu/)
-    - apt install -y --no-install-recommends docker.io
-    # - apt-get install -y ca-certificates curl gnupg
+    - apt install -yq --no-install-recommends docker.io
+    # - apt-get install -yq ca-certificates curl gnupg
     # - install -m 0755 -d /etc/apt/keyrings
     # - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o
     #   /etc/apt/keyrings/docker.gpg
@@ -35,11 +36,11 @@ build-for-publish:
     #   https://download.docker.com/linux/ubuntu  "$(. /etc/os-release && echo "$VERSION_CODENAME")"
     #   stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
     # - apt-get update
-    # - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+    # - apt-get install -yq docker-ce docker-ce-cli containerd.io docker-buildx-plugin
     #   docker-compose-plugin
     # install node
-    - apt-get install -y nodejs
-    - apt-get install -y npm
+    - apt-get install -yq nodejs
+    - apt-get install -yq npm
     # check installs
     - rustc -V
     - docker -v
