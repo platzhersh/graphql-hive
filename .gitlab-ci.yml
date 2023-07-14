@@ -1,6 +1,6 @@
 default:
   # Use the node image from the cistec registry as the default image for all jobs
-  image: registry.cistec.com/node:18.12.1-alpine3.16
+  image: ubuntu:23.10
 
 stages:
   - build-for-publish
@@ -22,11 +22,13 @@ build-for-publish:
     - export BUILD_TYPE="publish"
     - export DOCKER_TAG=":ipv-fix"
     - export DOCKER_REGISTRY="registry.cistec.com/"
-    - apk update
-    - apk add rustc
-    - apk add docker
+    - apt-get update
+    - apt-get install -y rustc
+    - apt-get install -y docker
+    - apt-get install -y node
     - rustc -V
     - docker -v
+    - node -v
     - npm i -g pnpm
     - pnpm i
     - pnpm graphql:generate
