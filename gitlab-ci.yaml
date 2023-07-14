@@ -1,0 +1,26 @@
+default:
+  # Use the node image from the cistec registry as the default image for all jobs
+  image: registry.cistec.com/node:18.12.1-alpine3.16
+
+stages:
+  - build-for-publish
+
+build-for-publish:
+  stage: build-for-publish
+  environment:
+    COMMIT_SHA: 'ipv-fix' # TODO: use actual commit sha
+    RELEASE: 'ipv-fix'
+    BRANCH_NAME: 'ipv-fix'
+    BUILD_TYPE: 'publish'
+    DOCKER_TAG: ':ipv-fix'
+    DOCKER_REGISTRY: 'registry.cistec.com'
+  script:
+    - sudo apt update
+    - sudo apt install rustc
+    - sudo apt install docker
+    - rustc -V
+    - docker -v
+    - npm i -g pnpm
+    - pnpm i
+    - pnpm graphql:generate
+    - docker buildx bake -f docker/docker.hcl publish --load

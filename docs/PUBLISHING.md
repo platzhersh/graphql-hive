@@ -5,6 +5,9 @@ To build the images from the local source code:
 2. Install all deps: `pnpm i`
 3. Generate types: `pnpm graphql:generate`
 4. Build source code: `pnpm build`
+
+or simply `pnpm i && pnpm graphql:generate && pnpm build`
+
 5. Set env vars:
 
 ```bash

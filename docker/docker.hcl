@@ -94,7 +94,8 @@ target "target-ci" {
 }
 
 target "target-publish" {
-  platforms = ["linux/amd64", "linux/arm64"]
+  #platforms = ["linux/amd64", "linux/arm64"]
+  platforms = ["linux/amd64"]
   cache-from = ["type=gha"]
   cache-to = ["type=gha,mode=max"]
 }
@@ -376,6 +377,7 @@ group "publish" {
   targets = [
     // "emails",
     // "rate-limit",
+    "apollo-router",
     "schema",
     // "policy",
     // "storage",
