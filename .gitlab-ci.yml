@@ -1,6 +1,6 @@
 default:
   # Use the node image from the cistec registry as the default image for all jobs
-  image: ubuntu:23.10
+  image: ubuntu:kinetic
 
 stages:
   - build-for-publish
