@@ -22,9 +22,9 @@ build-for-publish:
     - export BUILD_TYPE="publish"
     - export DOCKER_TAG=":ipv-fix"
     - export DOCKER_REGISTRY="registry.cistec.com/"
-    - sudo apt update
-    - sudo apt install rustc
-    - sudo apt install docker
+    - apt update
+    - apt install rustc
+    - apt install docker
     - rustc -V
     - docker -v
     - npm i -g pnpm
