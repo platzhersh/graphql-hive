@@ -26,8 +26,8 @@ build-for-publish:
     - apt-get update
     - apt-get install -yq rustc
     # install docker (see: https://docs.docker.com/engine/install/ubuntu/)
-    - apt install -yq --no-install-recommends docker.io
-    - apt install -yq docker-buildx-plugin
+    - apt-get install -yq --no-install-recommends docker.io
+    - apt-get install -yq docker-buildx-plugin
     # - apt-get install -yq ca-certificates curl gnupg
     # - install -m 0755 -d /etc/apt/keyrings
     # - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o
