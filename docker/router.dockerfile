@@ -16,8 +16,8 @@ WORKDIR /usr/src
 RUN USER=root cargo new router
 
 # Copy Cargo files
-COPY --from=pkg Cargo.toml /usr/src/router/
-COPY --from=config Cargo.lock /usr/src/router/
+COPY --from=pkg ./Cargo.toml /usr/src/router/
+COPY --from=config ./Cargo.lock /usr/src/router/
 
 WORKDIR /usr/src/router
 # Get the dependencies cached
