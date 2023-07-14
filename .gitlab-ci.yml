@@ -3,7 +3,31 @@ default:
   image: ubuntu:kinetic
 
 stages:
-  - build-for-publish
+  # - build-for-publish
+  - build-apollo-router
+
+build-apollo-router:
+  image: registry.cistec.com/buildah:v1.29.1-v1
+  stage: build-apollo-router
+  script:
+    - export COMMIT_SHA="ipv-fix"
+    - export RELEASE="ipv-fix"
+    - export BRANCH_NAME="ipv-fix"
+    - export BUILD_TYPE="publish"
+    - export DOCKER_TAG=":ipv-fix"
+    # - export DOCKER_REGISTRY="registry.cistec.com/"
+    # Login to the gitlab registry. The --password-stdin flag is used to prevent the password from being displayed in the logs
+    - echo $CI_REGISTRY_PASSWORD | buildah login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - buildah build --build-arg CI_JOB_TOKEN=${CI_JOB_TOKEN} -t
+      ${CI_REGISTRY_IMAGE}/apollo-router:${DOCKER_TAG} -f docker/router.dockerfile .
+    - mkdir images
+    # Save the image as a tar file
+    - buildah push apollo-router:${DOCKER_TAG} docker-archive:./images/apollo-router.tar
+    # Push the image to the gitlab registry
+    - buildah push ${CI_REGISTRY_IMAGE}/apollo-router:${DOCKER_TAG}
+  artifacts:
+    paths:
+      - images
 
 build-for-publish:
   stage: build-for-publish
