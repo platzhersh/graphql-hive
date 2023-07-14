@@ -2,6 +2,10 @@
 FROM scratch AS pkg
 FROM scratch AS config
 
+# debug log path
+RUN echo "config PWD $(pwd)"
+RUN echo "config LS $(ls)"
+
 FROM rust:1.70-slim as build
 
 # Required by Apollo Router
