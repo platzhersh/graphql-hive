@@ -38,7 +38,7 @@ build-for-publish:
     # - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin
     #   docker-compose-plugin
     # install node
-    - apt-get install -y node
+    - apt-get install -y nodejs
     - rustc -V
     - docker -v
     - node -v
