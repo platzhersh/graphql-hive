@@ -28,53 +28,52 @@ build-apollo-router:
   artifacts:
     paths:
       - images
-
-build-for-publish:
-  stage: build-for-publish
-  variables:
-    # TODO: use actual commit sha
-    COMMIT_SHA: ipv-fix
-    RELEASE: ipv-fix
-    BRANCH_NAME: ipv-fix
-    BUILD_TYPE: publish
-    DOCKER_TAG: :ipv-fix
-    DOCKER_REGISTRY: registry.cistec.com
-  script:
-    # migrate all this into a dockerfile
-    - export COMMIT_SHA="ipv-fix"
-    - export RELEASE="ipv-fix"
-    - export BRANCH_NAME="ipv-fix"
-    - export BUILD_TYPE="publish"
-    - export DOCKER_TAG=":ipv-fix"
-    - export DOCKER_REGISTRY="registry.cistec.com/"
-    - apt-get update
-    - apt-get install -yq rustc
-    # install docker (see: https://docs.docker.com/engine/install/ubuntu/)
-    # - apt-get install -yq --no-install-recommends docker.io
-    - apt-get install -yq ca-certificates curl gnupg
-    - install -m 0755 -d /etc/apt/keyrings
-    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o
-      /etc/apt/keyrings/docker.gpg
-    - chmod a+r /etc/apt/keyrings/docker.gpg
-    - echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg]
-      https://download.docker.com/linux/ubuntu  "$(. /etc/os-release && echo "$VERSION_CODENAME")"
-      stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-    - apt-get update
-    - apt-get install -yq docker-ce docker-ce-cli containerd.io docker-buildx-plugin
-      docker-compose-plugin
-    # start docker daemon
-    - service docker start
-    # - apt-get install -yq docker-buildx-plugin
-    # install node
-    - apt-get install -yq nodejs
-    - apt-get install -yq npm
-    # check installs
-    - rustc -V
-    - docker -v
-    - node -v
-    - npm --version
-    # start build
-    - npm i -g pnpm
-    - pnpm i
-    - pnpm graphql:generate
-    - docker buildx bake --file docker/docker.hcl publish --load
+# build-for-publish:
+#   stage: build-for-publish
+#   variables:
+#     # TODO: use actual commit sha
+#     COMMIT_SHA: ipv-fix
+#     RELEASE: ipv-fix
+#     BRANCH_NAME: ipv-fix
+#     BUILD_TYPE: publish
+#     DOCKER_TAG: :ipv-fix
+#     DOCKER_REGISTRY: registry.cistec.com
+#   script:
+#     # migrate all this into a dockerfile
+#     - export COMMIT_SHA="ipv-fix"
+#     - export RELEASE="ipv-fix"
+#     - export BRANCH_NAME="ipv-fix"
+#     - export BUILD_TYPE="publish"
+#     - export DOCKER_TAG=":ipv-fix"
+#     - export DOCKER_REGISTRY="registry.cistec.com/"
+#     - apt-get update
+#     - apt-get install -yq rustc
+#     # install docker (see: https://docs.docker.com/engine/install/ubuntu/)
+#     # - apt-get install -yq --no-install-recommends docker.io
+#     - apt-get install -yq ca-certificates curl gnupg
+#     - install -m 0755 -d /etc/apt/keyrings
+#     - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o
+#       /etc/apt/keyrings/docker.gpg
+#     - chmod a+r /etc/apt/keyrings/docker.gpg
+#     - echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg]
+#       https://download.docker.com/linux/ubuntu  "$(. /etc/os-release && echo "$VERSION_CODENAME")"
+#       stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+#     - apt-get update
+#     - apt-get install -yq docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+#       docker-compose-plugin
+#     # start docker daemon
+#     - service docker start
+#     # - apt-get install -yq docker-buildx-plugin
+#     # install node
+#     - apt-get install -yq nodejs
+#     - apt-get install -yq npm
+#     # check installs
+#     - rustc -V
+#     - docker -v
+#     - node -v
+#     - npm --version
+#     # start build
+#     - npm i -g pnpm
+#     - pnpm i
+#     - pnpm graphql:generate
+#     - docker buildx bake --file docker/docker.hcl publish --load
