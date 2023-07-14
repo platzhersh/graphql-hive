@@ -24,7 +24,8 @@ build-for-publish:
     - export DOCKER_REGISTRY="registry.cistec.com/"
     - apt-get update
     - apt-get install -y rustc
-    - apt-get install -y docker
+    - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+      docker-compose-plugin
     - apt-get install -y node
     - rustc -V
     - docker -v
