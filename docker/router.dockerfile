@@ -2,10 +2,6 @@
 FROM scratch AS pkg
 FROM scratch AS config
 
-# debug log path
-RUN echo "config PWD $(pwd)"
-RUN echo "config LS $(ls)"
-
 FROM rust:1.70-slim as build
 
 # Required by Apollo Router
@@ -24,8 +20,8 @@ RUN echo "PWD $(pwd)"
 RUN echo "LS $(ls)"
 
 # Copy Cargo files
-COPY --from=pkg ./Cargo.toml /usr/src/router/
-COPY --from=config ./Cargo.lock /usr/src/router/
+COPY --from=pkg Cargo.toml /usr/src/router/
+COPY --from=config Cargo.lock /usr/src/router/
 
 WORKDIR /usr/src/router
 # Get the dependencies cached
