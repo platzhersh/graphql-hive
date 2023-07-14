@@ -49,4 +49,4 @@ build-for-publish:
     - npm i -g pnpm
     - pnpm i
     - pnpm graphql:generate
-    - docker buildx bake -f docker/docker.hcl publish --load
+    - docker buildx bake --file docker/docker.hcl publish --load
