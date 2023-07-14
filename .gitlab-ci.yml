@@ -39,9 +39,13 @@ build-for-publish:
     #   docker-compose-plugin
     # install node
     - apt-get install -y nodejs
+    - apt-get install -y npm
+    # check installs
     - rustc -V
     - docker -v
     - node -v
+    - npm --version
+    # start build
     - npm i -g pnpm
     - pnpm i
     - pnpm graphql:generate
