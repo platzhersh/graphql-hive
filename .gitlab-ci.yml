@@ -14,7 +14,7 @@ build-apollo-router:
     - export RELEASE="ipv-fix"
     - export BRANCH_NAME="ipv-fix"
     - export BUILD_TYPE="publish"
-    - export DOCKER_TAG=":ipv-fix"
+    - export DOCKER_TAG="ipv-fix"
     # - export DOCKER_REGISTRY="registry.cistec.com/"
     # Login to the gitlab registry. The --password-stdin flag is used to prevent the password from being displayed in the logs
     - echo $CI_REGISTRY_PASSWORD | buildah login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
