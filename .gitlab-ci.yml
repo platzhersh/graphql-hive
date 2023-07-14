@@ -7,14 +7,21 @@ stages:
 
 build-for-publish:
   stage: build-for-publish
-  environment:
-    COMMIT_SHA: 'ipv-fix' # TODO: use actual commit sha
-    RELEASE: 'ipv-fix'
-    BRANCH_NAME: 'ipv-fix'
-    BUILD_TYPE: 'publish'
-    DOCKER_TAG: ':ipv-fix'
-    DOCKER_REGISTRY: 'registry.cistec.com'
+  variables:
+    # TODO: use actual commit sha
+    COMMIT_SHA: ipv-fix
+    RELEASE: ipv-fix
+    BRANCH_NAME: ipv-fix
+    BUILD_TYPE: publish
+    DOCKER_TAG: :ipv-fix
+    DOCKER_REGISTRY: registry.cistec.com
   script:
+    - export COMMIT_SHA="ipv-fix"
+    - export RELEASE="ipv-fix"
+    - export BRANCH_NAME="ipv-fix"
+    - export BUILD_TYPE="publish"
+    - export DOCKER_TAG=":ipv-fix"
+    - export DOCKER_REGISTRY="registry.cistec.com/"
     - sudo apt update
     - sudo apt install rustc
     - sudo apt install docker
