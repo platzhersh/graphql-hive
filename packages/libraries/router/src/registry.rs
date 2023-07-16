@@ -85,7 +85,7 @@ impl HiveRegistry {
         };
         let accept_invalid_certs = config.accept_invalid_certs.unwrap_or_else(|| false);
 
-        let logger = Logger::new();
+        let logger: Logger = Logger::new();
 
         // In case of an endpoint and an key being empty, we don't start the polling and skip the registry
         if endpoint.is_empty() && key.is_empty() {
@@ -191,9 +191,8 @@ impl HiveRegistry {
 
         match resp {
             Some(supergraph) => {
-                registry
-                    .logger
-                    .debug(format!("fetched supergraph: {}", supergraph));
+                self.logger
+                    .debug(&format!("fetched supergraph: {}", supergraph));
                 file.write_all(supergraph.as_bytes())
                     .map_err(|e| e.to_string())?;
             }
