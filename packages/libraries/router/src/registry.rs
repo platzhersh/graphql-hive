@@ -127,7 +127,6 @@ impl HiveRegistry {
                 registry
                     .logger
                     .info("Successfully fetched and saved supergraph from GraphQL Hive");
-                registry.logger.debug(schema())
             }
             Err(e) => {
                 registry.logger.error(&e);
@@ -192,6 +191,9 @@ impl HiveRegistry {
 
         match resp {
             Some(supergraph) => {
+                registry
+                    .logger
+                    .debug(format!("fetched supergraph: {}", supergraph));
                 file.write_all(supergraph.as_bytes())
                     .map_err(|e| e.to_string())?;
             }
