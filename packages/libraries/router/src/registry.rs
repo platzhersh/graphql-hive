@@ -123,7 +123,7 @@ impl HiveRegistry {
         };
 
         match registry.initial_supergraph() {
-            Ok(schema) => {
+            Ok(_) => {
                 registry
                     .logger
                     .info("Successfully fetched and saved supergraph from GraphQL Hive");
