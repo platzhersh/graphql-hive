@@ -15,13 +15,13 @@ build-apollo-router:
     - export BRANCH_NAME="ipv-fix"
     - export BUILD_TYPE="publish"
     - export DOCKER_TAG="ipv-fix"
-    - export pkg = "${PWD}/packages/libraries/router"
-    - export config = "${PWD}/configs/cargo"
+    - export PKG_PATH="${PWD}/packages/libraries/router"
+    - export CONFIG_PATH="${PWD}/configs/cargo"
     # - export DOCKER_REGISTRY="registry.cistec.com/"
     # Login to the gitlab registry. The --password-stdin flag is used to prevent the password from being displayed in the logs
     - echo $CI_REGISTRY_PASSWORD | buildah login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - buildah build --build-context pkg=${pkg} --build-context config=${config} --build-arg
-      RELEASE=${RELEASE} -t ${CI_REGISTRY_IMAGE}/apollo-router:${DOCKER_TAG} -f
+    - buildah build --build-context pkg=${PKG_PATH} --build-context config=${CONFIG_PATH}
+      --build-arg RELEASE=${RELEASE} -t ${CI_REGISTRY_IMAGE}/apollo-router:${DOCKER_TAG} -f
       ./docker/router.dockerfile .
     - mkdir images
     # Save the image as a tar file
