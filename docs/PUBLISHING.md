@@ -16,7 +16,7 @@ export RELEASE="ipv-fix"
 export BRANCH_NAME="ipv-fix"
 export BUILD_TYPE="publish"
 export DOCKER_TAG=":ipv-fix"
-export DOCKER_REGISTRY="registry.cistec.com/"
+export DOCKER_REGISTRY="registry.cistec.com/hive/"
 ```
 
 6. Compile a local Docker image by running: `docker buildx bake -f docker/docker.hcl publish --load`
@@ -28,24 +28,32 @@ export DOCKER_TAG=":ipv-fix"
 export DOCKER_REGISTRY="registry.cistec.com/"
 
 # composition
-docker tag composition-federation-2:ipv-fix registry.cistec.com/composition-federation-2:ipv-fix
-docker push registry.cistec.com/composition-federation-2:ipv-fix
+docker push registry.cistec.com/hive/composition-federation-2:ipv-fix
 
 # schema
-docker push registry.cistec.com/schema:ipv-fix
+docker push registry.cistec.com/hive/schema:ipv-fix
 
 # tokens
-docker push registry.cistec.com/tokens:ipv-fix
+docker push registry.cistec.com/hive/tokens:ipv-fix
 
 # usage-ingestor
-docker push registry.cistec.com/usage-ingestor:ipv-fix
+docker push registry.cistec.com/hive/usage-ingestor:ipv-fix
 
 # usage
-docker push registry.cistec.com/usage:ipv-fix
+docker push registry.cistec.com/hive/usage:ipv-fix
 
 # webhooks
-docker push registry.cistec.com/webhooks:ipv-fix
+docker push registry.cistec.com/hive/webhooks:ipv-fix
 
 # server
-docker push registry.cistec.com/server:ipv-fix
+docker push registry.cistec.com/hive/server:ipv-fix
+
+# app
+docker push registry.cistec.com/hive/app:ipv-fix
+
+# storage
+docker push registry.cistec.com/hive/storage:ipv-fix
+
+# emails
+docker push registry.cistec.com/hive/emails:ipv-fix
 ```

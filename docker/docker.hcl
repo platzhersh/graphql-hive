@@ -375,12 +375,12 @@ target "cli" {
 
 group "publish" {
   targets = [
-    // "emails",
+    "emails",
     // "rate-limit",
-    "apollo-router",
+    // "apollo-router",
     "schema",
     // "policy",
-    // "storage",
+    "storage",
     "tokens",
     // "usage-estimator",
     "usage-ingestor",
@@ -388,7 +388,7 @@ group "publish" {
     "webhooks",
     "server",
     "composition-federation-2",
-    // "app",
+    "app",
     // "cli"
   ]
 }

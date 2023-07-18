@@ -28,7 +28,7 @@ build-apollo-router:
     # Save the image as a tar file
     # - buildah push apollo-router:${DOCKER_TAG} docker-archive:./images/apollo-router.tar
     # Push the image to the gitlab registry
-    - buildah push ${CI_REGISTRY_IMAGE}/apollo-router:${DOCKER_TAG}
+    - buildah push ${CI_REGISTRY_IMAGE}/hive/apollo-router:${DOCKER_TAG}
   # artifacts:
   #   paths:
   #     - images
