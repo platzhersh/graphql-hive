@@ -267,19 +267,19 @@ impl UsageAgent {
                     return Ok(());
                 }
                 reqwest::StatusCode::BAD_REQUEST => {
-                    tracing::error!(format!(
+                    tracing::error!(
                         "Bad request: {} {}",
                         resp.status().as_str(),
                         resp.text().unwrap_or_default()
-                    ));
+                    );
                     return Err("Token is missing".to_string());
                 }
                 reqwest::StatusCode::FORBIDDEN => {
-                    tracing::error!(format!(
+                    tracing::error!(
                         "Forbidden: {} {}",
                         resp.status().as_str(),
                         resp.text().unwrap_or_default()
-                    ));
+                    );
                     return Err("No access".to_string());
                 }
                 _ => {

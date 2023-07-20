@@ -57,3 +57,12 @@ docker push registry.cistec.com/hive/storage:ipv-fix
 # emails
 docker push registry.cistec.com/hive/emails:ipv-fix
 ```
+
+8. Wait for pipeline to build apollo-router, then pull the image and push it to
+   `registry.cistec.com`
+
+```bash
+docker pull http://gitlab.cistec.com:5050/core/supergraph/graphql-hive/apollo-router:ipv-fix
+docker tag http://gitlab.cistec.com:5050/core/supergraph/graphql-hive/apollo-router:ipv-fix registry.cistec.com/hive/apollo-router:ipv-fix
+docker push registry.cistec.com/hive/apollo-router:ipv-fix
+```
