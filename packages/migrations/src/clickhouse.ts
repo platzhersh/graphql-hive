@@ -24,8 +24,8 @@ export async function migrateClickHouse(
     protocol: string;
     host: string;
     port: number;
-    username: string;
-    password: string;
+    username: string; // TODO: dont clear text log this
+    password: string; // TODO: dont clear text log this
   },
 ) {
   if (isClickHouseMigrator === false) {

@@ -267,6 +267,7 @@ impl UsageAgent {
                     return Ok(());
                 }
                 reqwest::StatusCode::BAD_REQUEST => {
+                    
                     return Err("Token is missing".to_string());
                 }
                 reqwest::StatusCode::FORBIDDEN => {
