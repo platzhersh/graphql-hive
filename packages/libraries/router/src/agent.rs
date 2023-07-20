@@ -264,6 +264,11 @@ impl UsageAgent {
 
             match resp.status() {
                 reqwest::StatusCode::OK => {
+                    tracing::info!(
+                        "Usage reported: {} {}",
+                        resp.status().as_str(),
+                        resp.text().unwrap_or_default()
+                    );
                     return Ok(());
                 }
                 reqwest::StatusCode::BAD_REQUEST => {
