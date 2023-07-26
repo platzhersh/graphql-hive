@@ -86,7 +86,7 @@ impl HiveRegistry {
         let accept_invalid_certs = config.accept_invalid_certs.unwrap_or_else(|| false);
 
         let logger: Logger = Logger::new();
-        logger.info("Running customised apollo-router for GraphQL Hive. Customised by Cistec AG.");
+        logger.info("Running customised apollo-router for GraphQL Hive.");
 
         // In case of an endpoint and an key being empty, we don't start the polling and skip the registry
         if endpoint.is_empty() && key.is_empty() {
