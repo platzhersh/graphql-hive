@@ -167,6 +167,8 @@ impl Plugin for UsagePlugin {
             Err(_) => "https://app.graphql-hive.com/usage".to_string(),
         };
 
+        tracing::info!("GraphQL Hive Usage endpoint: {}", endpoint);
+
         let enabled = init.config.enabled.unwrap_or(true);
         let buffer_size = init.config.buffer_size.unwrap_or(1000);
         let accept_invalid_certs = init.config.accept_invalid_certs.unwrap_or(false);

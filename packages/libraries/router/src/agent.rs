@@ -264,12 +264,27 @@ impl UsageAgent {
 
             match resp.status() {
                 reqwest::StatusCode::OK => {
+                    tracing::info!(
+                        "Usage reported: {} {}",
+                        resp.status().as_str(),
+                        resp.text().unwrap_or_default()
+                    );
                     return Ok(());
                 }
                 reqwest::StatusCode::BAD_REQUEST => {
+                    tracing::error!(
+                        "Bad request: {} {}",
+                        resp.status().as_str(),
+                        resp.text().unwrap_or_default()
+                    );
                     return Err("Token is missing".to_string());
                 }
                 reqwest::StatusCode::FORBIDDEN => {
+                    tracing::error!(
+                        "Forbidden: {} {}",
+                        resp.status().as_str(),
+                        resp.text().unwrap_or_default()
+                    );
                     return Err("No access".to_string());
                 }
                 _ => {
